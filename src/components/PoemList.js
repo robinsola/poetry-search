@@ -1,12 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Poem from './Poem';
+import {connect} from 'react-redux';
 
-function PoemList() {
+function PoemList(props) {
   return(
     <div>
-      <p>PoemList</p>
+      {props.poems.map((poem, index) =>
+      <Poem title={poem.title}
+      author={poem.author}
+      lines={poem.lines}
+      key={index}/>
+      )}
     </div>
   );
 }
 
-export default PoemList;
+PoemList.propTypes = {
+  poems: PropTypes.array
+};
+
+export default connect()(PoemList);
